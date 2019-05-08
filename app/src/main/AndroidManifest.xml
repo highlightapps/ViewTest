@@ -42,6 +42,10 @@
             android:name=".SteeringActivity"
             android:theme="@style/AppFullScreenTheme"
             android:screenOrientation="landscape" />
+
+        <service
+            android:name=".BluetoothService"
+            />
     </application>
 
 </manifest>

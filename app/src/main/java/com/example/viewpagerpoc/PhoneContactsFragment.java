@@ -1,13 +1,22 @@
 package com.example.viewpagerpoc;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.zxon.mybluetoothdemo.service.BluetoothService;
 
 public class PhoneContactsFragment extends BaseFragment {
 
-   // public static BluetoothService sService;
+    public static BluetoothService sService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -18,7 +27,7 @@ public class PhoneContactsFragment extends BaseFragment {
 
     private void initViews(View view) {
 
-       /* Intent serviceIntent = new Intent(getContext(), BluetoothService.class);
+        Intent serviceIntent = new Intent(getContext(), BluetoothService.class);
         ServiceConnection connection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -39,12 +48,12 @@ public class PhoneContactsFragment extends BaseFragment {
             public void onClick(View v) {
                 onPullPhoneBook();
             }
-        });*/
+        });
     }
 
-  /*  public void onPullPhoneBook() {
+    public void onPullPhoneBook() {
         if (sService != null) {
             sService.getPhoneBook();
         }
-    }*/
+    }
 }
