@@ -25,6 +25,11 @@ import java.util.Set;
 
 import bluetooth.client.pbap.BluetoothPbapClient;
 
+import static bluetooth.client.pbap.BluetoothPbapClient.EVENT_PULL_PHONE_BOOK_DONE;
+import static bluetooth.client.pbap.BluetoothPbapClient.EVENT_PULL_PHONE_BOOK_ERROR;
+import static bluetooth.client.pbap.BluetoothPbapClient.EVENT_SESSION_CONNECTED;
+import static bluetooth.client.pbap.BluetoothPbapClient.EVENT_SESSION_DISCONNECTED;
+
 public class PhoneContactsFragment extends BaseFragment {
 
     protected static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
@@ -135,9 +140,9 @@ public class PhoneContactsFragment extends BaseFragment {
 
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 2:
+                case EVENT_PULL_PHONE_BOOK_DONE:
                     break;
-                case 102:
+                case EVENT_PULL_PHONE_BOOK_ERROR:
                     //hideProgressDialog();
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -146,7 +151,7 @@ public class PhoneContactsFragment extends BaseFragment {
                         }
                     });
                     break;
-                case 201:
+                case EVENT_SESSION_CONNECTED:
                     //hideProgressDialog();
                     if (sPbapClient == null || sPbapClient.getState() != BluetoothPbapClient.ConnectionState.CONNECTED) {
                         getActivity().runOnUiThread(new Runnable() {
@@ -160,7 +165,7 @@ public class PhoneContactsFragment extends BaseFragment {
                     sPbapClient.pullPhoneBook(BluetoothPbapClient.PB_PATH);
                     //showProgressDialog(getString(C0938R.string.retriving_contacts));
                     return;
-                case 202:
+                case EVENT_SESSION_DISCONNECTED:
                     if (action_app_disconnect) {
                         action_app_disconnect = false;
                         return;
